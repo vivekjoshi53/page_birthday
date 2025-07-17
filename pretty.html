@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Pretty🤍!!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      filter: brightness(0.7);
+    }
+
+    .content, .page2 {
+      position: relative;
+      z-index: 1;
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    header p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .birthday-message {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      margin: 40px 0;
+      animation: pulse 2s infinite;
+    }
+
+    .birthday-message h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .birthday-message p {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+
+    .heart {
+      font-size: 3rem;
+      margin-top: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .next-btn {
+      display: block;
+      margin: 30px auto;
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .next-btn:hover {
+      background-color: #ff5252;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .page2 {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .surprise-text {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-family: 'Dancing Script', cursive;
+      animation: pulse 2s infinite;
+    }
+
+    .memory-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .memory-item {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1/1;
+    }
+
+    .memory-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .memory-item:hover img {
+      transform: scale(1.2);
+    }
+
+    .memory-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .memory-item:hover .memory-caption {
+      transform: translateY(0);
+    }
+
+    .contact {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .heart-fall {
+      position: fixed;
+      top: -50px;
+      font-size: 2rem;
+      opacity: 1;
+      animation: fall 5s linear forwards;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .memory-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+      }
+
+      .surprise-text {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="c:\Users\admin\Downloads\13885768_3840_2160_60fps.mp4" type="video/mp4">
+  </video>
+
+  <div class="content visible">
+    <header>
+      <h1>Happy Birthday Pretty!!</h1>
+      <p id="subtitle"></p>
+    </header>
+
+    <div class="birthday-message">
+      <h2>Happy Birthday to the Queen of Dance!</h2>
+      <p>May your day be filled with rhythm and joy</p>
+      <p>Your moves light up every room - just like you light up my life</p>
+      <p>Wishing you endless dance floors and happy moments</p>
+      <div class="heart">💃 🕺</div>
+    </div>
+
+    <button class="next-btn" onclick="showPage2()">Click for your surprise!</button>
+  </div>
+
+  <div class="page2" id="page2">
+    <h2 class="surprise-text">Keep Smiling Meghaa!!</h2>
+
+    <div class="memory-gallery">
+      <!-- Your images -->
+      <div class="memory-item">
+        <img src="c:\Users\admin\Desktop\mm\IMG_20250224_203836.jpg" alt="Person dancing" />
+        <div class="memory-caption">Chilling!</div>
+      </div>
+      <div class="memory-item">
+        <img src="c:\Users\admin\Desktop\mm\IMG_20250224_203905.jpg" alt="Birthday toast" />
+        <div class="memory-caption">Amazing!</div>
+      </div>
+      <div class="memory-item">
+        <img src="c:\Users\admin\Desktop\mm\IMG_20250224_204431.jpg" alt="Birthday setup" />
+        <div class="memory-caption">Blussing</div>
+      </div>
+      <div class="memory-item">
+        <img src="c:\Users\admin\Desktop\mm\IMG_20250224_204459.jpg" alt="Funny cake face" />
+        <div class="memory-caption">Innocent Face!</div>
+      </div>
+      <div class="memory-item">
+        <img src="c:\Users\admin\Desktop\mm\Screenshot_2025-05-13-13-23-05-22_b86672daa061159f52c1a3195c773d05.jpg" alt="Group photo" />
+        <div class="memory-caption">Beautiful</div>
+      </div>
+      <div class="square-video">
+        <video width="320" height="240" controls>
+    <source src="c:\Users\admin\Desktop\mm\VID_20250716144820.mp4" type="video/mp4">
+    <div class="memory-caption">Fun times!</div>
+  </video>
+  </div>
+         <div class="square-video">
+        <video width="320" height="240" controls>
+    <source src="c:\Users\admin\Desktop\mm\VID_20250716144918.mp4" type="video/mp4">
+    <div class="memory-caption">Fun times!</div>
+  </video>
+      </div>
+    </div>
+
+    <div class="contact">
+      <h3>Hope you had an amazing birthday!</h3>
+      <p>i Wish you achieve what you need!!</p>
+      <p>Instagram: @vivek_vj53</p>
+      <p>Phone: 9106129458</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    // Typing effect
+    window.onload = () => {
+      typeWriter(document.getElementById('subtitle'), 'This special day is all about you and celebrating the amazing person you are!', 50);
+    };
+
+    function typeWriter(element, text, speed) {
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        }
+      }
+      typing();
+    }
+
+    function showPage2() {
+      const page1 = document.querySelector('.content');
+      const page2 = document.getElementById('page2');
+
+      page1.classList.add('hidden');
+
+      setTimeout(() => {
+        page1.style.display = 'none';
+        page2.style.display = 'block';
+        page2.classList.remove('hidden');
+
+        // Confetti
+        startConfetti();
+
+        // Hearts
+        spawnHearts();
+
+      }, 1000);
+    }
+
+    function startConfetti() {
+      const duration = 3000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+      }, 250);
+    }
+
+    function spawnHearts() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-fall');
+        heart.textContent = '🥳';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>
